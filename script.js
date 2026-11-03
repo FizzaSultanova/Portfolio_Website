@@ -138,15 +138,11 @@ document.querySelectorAll('[data-flip]').forEach((card) => {
   card.querySelector('[data-flip-close]').addEventListener('click', () => flip(false));
 });
 
-document.querySelectorAll('a[data-gmail]').forEach(function (a) {
-  a.addEventListener('click', function (e) {
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
-    e.preventDefault();
-    var w = 640, h = 640;
-    var left = Math.round(window.screenX + (window.outerWidth - w) / 2);
-    var top = Math.round(window.screenY + (window.outerHeight - h) / 2);
-    var win = window.open(a.href, 'gmailCompose',
-      'popup=yes,width=' + w + ',height=' + h + ',left=' + left + ',top=' + top);
-    if (!win) window.open(a.href, '_blank');
-  });
-});
+<button
+  onClick={() => {
+    navigator.clipboard.writeText("kamran@example.com");
+  }}
+  aria-label="Copy email address"
+>
+  <MailIcon />
+</button>
