@@ -204,7 +204,7 @@ b { font-weight: 700; }
   position: relative;
   line-height: 1.2;
 }
-.hero__stat + .hero__stat::before {   /* vertical divider */
+.hero_stat + .hero_stat::before {   /* vertical divider */
   content: "";
   position: absolute;
   left: 0; top: 50%;
@@ -425,7 +425,7 @@ b { font-weight: 700; }
   border-top: 1px solid #dedcdc;
 }
 .job:last-child { border-bottom: 1px solid #dedcdc; }
-.job__when, .job__role { display: contents; }
+.job_when, .job_role { display: contents; }
 .job__date { grid-column: 1; grid-row: 1; font-weight: 500; font-size: 17px; line-height: 1.2; color: #000; }
 .job__place { grid-column: 1; grid-row: 2; margin-top: 9.6px; font-weight: 500; font-size: 16px; line-height: 1.2; color: var(--gray-600); }
 .badge {
@@ -839,7 +839,7 @@ b { font-weight: 700; }
   .certs-achievements { flex-direction: column; }
   .certs, .achievements { flex-basis: auto; width: 100%; }
   .recognition__titles { flex-direction: column; }
-  .recognition__titles h2, .recognition__titles p { flex-basis: auto; }   /* stacked: no fixed heights */
+  .recognition_titles h2, .recognition_titles p { flex-basis: auto; }   /* stacked: no fixed heights */
 }
 
 @media (max-width: 960px) {
@@ -874,10 +874,13 @@ b { font-weight: 700; }
   .hero__title { font-size: 42px; line-height: 1.2; }
   .hero__roles { font-size: 17px; }
   .hero__roles img { width: 24px; height: 24px; }
-  .hero__bio { font-size: 17px; text-align: left; }
+  .hero__bio { font-size: 17px; text-align: center; }
+  .hero__heading { align-items: center; text-align: center; }
+  .hero__roles { justify-content: center; text-align: center; }
+  .hero__photo { margin-inline: auto; }
   .hero__stats { flex-direction: column; }
   .hero__stat { width: 100%; padding: 28px 16px; gap: 8px; }
-  .hero__stat + .hero__stat::before { left: 50%; top: 0; width: 70%; height: 1px; transform: translateX(-50%); }
+  .hero_stat + .hero_stat::before { left: 50%; top: 0; width: 70%; height: 1px; transform: translateX(-50%); }
   .section-title-center, .serif-title, .philosophy__title { font-size: 30px; }
   .philosophy__underline::after { top: auto; bottom: -10px; width: calc(100% + 20px); left: -8px; }
   .philosophy__title { padding-bottom: 20px; }
@@ -894,22 +897,22 @@ b { font-weight: 700; }
   .building__stats { grid-template-columns: 1fr; }
   .building__milestones { grid-template-columns: 1fr; gap: 0; margin-top: 40px; }
   .building__next { flex-direction: column; gap: 8px; }
-  .building__row, .venture--alt .building__row { padding: 0; }
+  .building_row, .venture--alt .building_row { padding: 0; }
   .venture--alt .building__venture { padding-left: 0; }
   .venture { display: flex; flex-direction: column; }          /* arrow sits at the very bottom on both slides */
   .building__row { flex: 1; display: flex; flex-direction: column; }
   .venture__arrow { position: static; display: block; margin: auto auto 0; }
   .building__content { margin-bottom: 24px; }
-  .venture__arrow:hover, .venture__arrow--prev:hover { transform: none; }
+  .venture_arrow:hover, .venture_arrow--prev:hover { transform: none; }
   .logo-tile--first { left: auto; top: auto; }
   .logo-tile__moe { width: 82.7%; height: 70.7%; }
   .logo-tile__kufic { width: 58.8%; height: 58.3%; }
   .job { display: flex; flex-direction: column; gap: 4px; }
-  .job__when, .job__role { display: flex; flex-direction: column; align-items: flex-start; }
+  .job_when, .job_role { display: flex; flex-direction: column; align-items: flex-start; }
   .job__role { margin-top: 12px; }
   .job__desc { margin-top: 12px; }
   .job__role h3 { font-size: 19px; }
-  .job__role h3, .job__role p, .job__place { white-space: normal; }
+  .job_role h3, .jobrole p, .job_place { white-space: normal; }
   .chip { white-space: normal; }
   .certs__viewport { height: 380px; }
   .recognition { padding: 40px 0 48px; }
