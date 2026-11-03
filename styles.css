@@ -1202,5 +1202,5 @@ b { font-weight: 700; }
 
 /* ===== Hero əyri xəttinin rəngi ===== */
 @media (max-width: 680px) {
-  .hero__heading::before { background: #3a6689; }
+  .hero__heading::before { background: #0b65b0; }
 }
