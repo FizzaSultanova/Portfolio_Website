@@ -270,7 +270,7 @@ b { font-weight: 700; }
    ========================================================= */
 .building { display: flex; flex-direction: column; gap: 44px; }
 .building__band { background: var(--band-gray); padding: 59px 0; overflow: hidden; }
-.building__venture { font-size: 40px; line-height: .85; min-height: 88px; }
+.building__venture { font-size: 40px; line-height: 1.2; min-height: 88px; }
 /* Both slides share one grid cell, so the band is always as tall as the taller slide
    and nothing jumps when you switch with the arrow */
 .ventures { display: grid; }
@@ -1202,5 +1202,5 @@ b { font-weight: 700; }
 
 /* ===== Hero əyri xəttinin rəngi ===== */
 @media (max-width: 680px) {
-  .hero__heading::before { background: #0b65b0; }
+  .hero__heading::before { background: #339ef5; }
 }
