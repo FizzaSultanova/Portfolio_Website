@@ -1192,3 +1192,15 @@ b { font-weight: 700; }
     border-radius: 50% 50% 0 0 / var(--ch) var(--ch) 0 0;
   }
 }
+
+/* ===== Əyri bir az aşağıdan başlasın ===== */
+@media (max-width: 680px) {
+  .hero__info {
+    margin-top: clamp(-65px, -14vw, -35px);   /* əvvəl: clamp(-90px, -20vw, -60px) */
+  }
+}
+
+/* ===== Hero əyri xəttinin rəngi ===== */
+@media (max-width: 680px) {
+  .hero__heading::before { background: #3a6689; }
+}
