@@ -933,3 +933,169 @@ b { font-weight: 700; }
   .contact__footer { flex-direction: column; align-items: stretch; }
   .btn-send { width: 100%; }
 }
+
+
+
+/* =========================================================
+   FINAL MOBILE / TABLET FIXES  (faylın ən sonunda olmalıdır)
+   ========================================================= */
+
+/* ---------- Planşet və mobil (≤960px) ---------- */
+@media (max-width: 960px) {
+
+  /* Hero: şəkil, altında mətn, sütun şəklində */
+  .hero { flex-direction: column; align-items: stretch; gap: 24px; }
+
+  /* Şəkil kəsilmir, konteynerə tam sığır */
+  .hero__photo {
+    width: 100%;
+    max-width: 420px;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: auto;
+    margin-inline: auto;
+    overflow: visible;
+  }
+  .hero__photo img {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Rollar: hər biri ayrı sətirdə, səliqəli bullet ilə */
+  .hero__roles {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .hero__roles li { gap: 10px; align-items: flex-start; }
+  .hero__roles li img { display: none; }
+.hero__roles li::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: .45em;
+  border-radius: 50%;
+  background: var(--accent-violet);
+}
+
+  /* Karyera bölməsində nowrap sütunlardan çıxmasın */
+  .job__role h3, .job__role p, .job__place { white-space: normal; }
+}
+
+/* ---------- Mobil (≤680px) ---------- */
+@media (max-width: 680px) {
+
+  .hero__photo { max-width: 320px; }
+
+  /* Başlıq 320–430px ekranlarda da sığır */
+  .hero__title {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: 1.15;
+  }
+
+  .hero__roles { font-size: 17px; line-height: 1.25; }
+  .hero__bio   { font-size: 16px; line-height: 1.4; }
+}
+
+/* ---------- Çox kiçik ekranlar (≤380px) ---------- */
+@media (max-width: 380px) {
+  .hero__roles { font-size: 16px; }
+  .hero__stat strong { font-size: 28px; }
+}
+
+@media (max-width: 680px) {
+  .hero__heading { text-align: center; }
+  .hero__roles { align-items: center; }
+}
+
+/* ===== MOBILE HERO: photo with curved white title overlay ===== */
+@media (max-width: 680px) {
+
+  .hero { gap: 0; padding-inline: var(--gutter); }
+
+  /* Photo: full width, not cropped */
+  .hero__photo {
+    width: 100%;
+    max-width: 460px;
+    margin-inline: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+  .hero__photo img {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Text column: same width as the photo, pulled up over its bottom */
+  .hero__info {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 460px;
+    margin-inline: auto;
+    margin-top: clamp(-90px, -20vw, -60px);   /* how much it overlaps the photo */
+  }
+
+  /* White curved panel that holds the title */
+  .hero__heading {
+    background: #fff;
+    border-top: 1px solid var(--line-blue);
+    border-radius: 50% 50% 0 0 / 70px 70px 0 0;   /* curve height = 70px */
+    padding: 36px 8% 0;
+    text-align: left;
+  }
+
+  .hero__title {
+    font-size: clamp(32px, 9.5vw, 44px);
+    line-height: 1.15;
+  }
+
+  /* Roles: one per line, same bullet for all */
+  .hero__roles {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 17px;
+  }
+  .hero__roles li { gap: 10px; align-items: flex-start; }
+  .hero__roles li img { display: none; }
+  .hero__roles li::before {
+    content: "";
+    flex: none;
+    width: 8px;
+    height: 8px;
+    margin-top: .45em;
+    border-radius: 50%;
+    background: var(--accent-violet);
+  }
+
+  .hero__bio { text-align: left; font-size: 16px; line-height: 1.4; }
+}
+
+/* ===== BULLET OVERRIDE (ən sonda olmalıdır) ===== */
+@media (max-width: 960px) {
+  .hero__roles li { align-items: center; gap: 5px; }
+  .hero__roles li::before {
+    content: "";
+    flex: none;
+    width: 32px;
+    height: 32px;
+    margin: 0 -8px;
+    border-radius: 0;
+    background: url("assets/icon-dot.svg") center / contain no-repeat;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero__roles li::before { width: 24px; height: 24px; margin: 0 -6px; }
+}
