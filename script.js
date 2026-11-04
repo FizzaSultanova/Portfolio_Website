@@ -61,11 +61,11 @@ if (track) {
 }
 
 // ===== Contact form =====
-// Messages are delivered by FormSubmit (https://formsubmit.co) — free, no server or account needed.
-// TESTING: messages go to the address below. When the site goes live, change it to
-//          'kami206@gmail.com' (Kamran Javed). The first message to a new address sends an
-//          activation email — click "Activate Form" in it once, then messages arrive normally.
-const CONTACT_EMAIL = 'sultanovafizza@gmail.com';
+// The form posts to our own Vercel serverless function (/api/contact), which forwards the
+// message to FormSubmit on the server. The recipient address lives in api/contact.js
+// (or the CONTACT_EMAIL environment variable in Vercel), not here in the browser.
+const CONTACT_ENDPOINT = '/api/contact';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const form = document.querySelector('[data-contact-form]');
 if (form) {
@@ -77,34 +77,45 @@ if (form) {
     status.classList.toggle('is-pending', state === 'pending');
   };
 
+  let sending = false;                                        // blocks duplicate submissions
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (sending) return;
     if (form.elements._honey.value) return;                 // a spam bot filled the hidden field
+
+    const name = form.elements.name.value.trim();
+    const email = form.elements.email.value.trim();
+    const message = form.elements.message.value.trim();
+
+    // Required-field + email validation (same error style as the other messages)
+    if (!name || !email || !message) {
+      say('Please fill in your name, email and message.', 'error');
+      return;
+    }
+    if (!EMAIL_PATTERN.test(email)) {
+      say('Please enter a valid email address.', 'error');
+      return;
+    }
+
+    sending = true;
     button.disabled = true;
     say('Sending…', 'pending');
     try {
-      const name = form.elements.name.value.trim();
-      const email = form.elements.email.value.trim();
-      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          message: form.elements.message.value.trim(),
-          _subject: `New message from your portfolio — ${name}`,
-          _replyto: email,
-          _template: 'table',
-        }),
+        body: JSON.stringify({ name, email, message, _honey: form.elements._honey.value }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.statusText);
+      if (!res.ok || data.success !== true) throw new Error(data.message || res.statusText);
       form.reset();
       say('Thank you! Your message has been sent.');      // shown in green
     } catch (err) {
       say('Sorry, the message could not be sent. Please try again, or email kami206@gmail.com directly.', 'error');
       console.error('Contact form error:', err);
     } finally {
+      sending = false;
       button.disabled = false;
     }
   });
