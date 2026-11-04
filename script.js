@@ -65,7 +65,7 @@ if (track) {
 // TESTING: messages go to the address below. When the site goes live, change it to
 //          'kami206@gmail.com' (Kamran Javed). The first message to a new address sends an
 //          activation email — click "Activate Form" in it once, then messages arrive normally.
-const CONTACT_EMAIL = 'kami206@gmail.com';
+const CONTACT_EMAIL = 'sultanovafizza@gmail.com';
 
 const form = document.querySelector('[data-contact-form]');
 if (form) {
