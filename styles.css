@@ -1204,3 +1204,14 @@ b { font-weight: 700; }
 @media (max-width: 680px) {
   .hero__heading::before { background: #339ef5; }
 }
+/* ===== Quote xətti: yalnız mobildə mətnin boyu qədər və düz ===== */
+@media (max-width: 680px) {
+  .philosophy__body { align-items: stretch; }
+
+  .philosophy__bar {
+    height: auto;            /* sabit 80px ləğv olunur, mətnin boyuna uzanır */
+    align-self: stretch;
+    transform: none;         /* əyilmə yoxdur, tam şaquli */
+    margin-inline: 4px 12px;
+  }
+}
